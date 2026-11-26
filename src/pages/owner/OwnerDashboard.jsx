@@ -5,6 +5,7 @@ const OwnerDashboard = () => {
   return (
     <>
       <OwnerSidebar />
+
       <div className="min-h-screen bg-slate-50 p-5 md:p-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div>
@@ -45,6 +46,80 @@ const OwnerDashboard = () => {
             <p className="text-sm text-slate-500">Available Slots</p>
             <h2 className="text-3xl font-bold text-blue-600 mt-3">18</h2>
             <p className="text-xs text-slate-500 mt-2">Currently available</p>
+          </div>
+        </div>
+
+        {/* Revenue and Commission Overview */}
+        <div className="bg-white border border-slate-200 rounded-xl p-5 md:p-6 mb-8">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+            <div>
+              <h2 className="text-lg font-bold text-slate-900">
+                Revenue & Commission Overview
+              </h2>
+              <p className="text-sm text-slate-500 mt-1">
+                Your parking revenue after SpotSync commission.
+              </p>
+            </div>
+
+            <div className="flex gap-2">
+              <button className="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">
+                Daily
+              </button>
+
+              <button className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg">
+                Monthly
+              </button>
+
+              <button className="px-4 py-2 text-sm border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50">
+                Yearly
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Total Parking Revenue</p>
+              <h3 className="text-2xl font-bold text-slate-900 mt-3">
+                ₹24,500
+              </h3>
+              <p className="text-xs text-slate-500 mt-2">
+                Total booking amount
+              </p>
+            </div>
+
+            <div className="bg-red-50 border border-red-100 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Admin Commission (10%)</p>
+              <h3 className="text-2xl font-bold text-red-600 mt-3">₹2,450</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                SpotSync platform fee
+              </p>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5">
+              <p className="text-sm text-slate-500">
+                Your Total Earnings (90%)
+              </p>
+              <h3 className="text-2xl font-bold text-blue-600 mt-3">₹22,050</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                Your earnings after commission
+              </p>
+            </div>
+
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Commission Rate</p>
+              <h3 className="text-2xl font-bold text-slate-900 mt-3">10%</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                SpotSync platform commission
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 bg-blue-50 border border-blue-100 rounded-lg p-4">
+            <p className="text-sm text-blue-800">
+              <span className="font-semibold">Note:</span> SpotSync receives 10%
+              commission from every successful booking. The remaining 90% is
+              your parking business revenue.
+            </p>
           </div>
         </div>
 

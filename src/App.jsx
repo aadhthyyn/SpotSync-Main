@@ -13,7 +13,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageUsers from "./pages/admin/ManageUsers";
 import Auth from "./pages/Auth";
 import OwnerSidebar from "./component/OwnerSidebar";
-
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route path="/my-bookings" element={<MyBookings />} />
 
         <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Auth />} />
+        <Route path="/register" element={<Register />} />
 
         <Route path="/parking/:id" element={<ParkingDetails />} />
         <Route path="/ai-assistant" element={<AIAssistant />} />

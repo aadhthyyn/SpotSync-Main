@@ -99,6 +99,73 @@ const AdminDashboard = () => {
           </div>
         </div>
 
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm mb-8">
+          <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6">
+            <div>
+              <h2 className="text-lg font-bold text-slate-800">
+                Revenue Overview
+              </h2>
+              <p className="text-sm text-slate-500 mt-1">
+                Parking revenue and admin commission details
+              </p>
+            </div>
+
+            <div className="flex bg-slate-100 rounded-lg p-1 w-fit">
+              <button className="px-5 py-2 rounded-md text-sm font-semibold bg-blue-600 text-white shadow">
+                Daily
+              </button>
+              <button className="px-5 py-2 rounded-md text-sm font-semibold text-slate-600">
+                Monthly
+              </button>
+              <button className="px-5 py-2 rounded-md text-sm font-semibold text-slate-600">
+                Yearly
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Total Parking Revenue</p>
+              <h3 className="text-2xl font-bold text-blue-600 mt-3">₹8,450</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                Total daily booking income
+              </p>
+            </div>
+
+            <div className="border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Admin Commission</p>
+              <h3 className="text-2xl font-bold text-green-600 mt-3">₹845</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                10% platform commission
+              </p>
+            </div>
+
+            <div className="border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Owner Earnings</p>
+              <h3 className="text-2xl font-bold text-purple-600 mt-3">
+                ₹7,605
+              </h3>
+              <p className="text-xs text-slate-500 mt-2">90% owner share</p>
+            </div>
+
+            <div className="border border-slate-200 rounded-xl p-5">
+              <p className="text-sm text-slate-500">Commission Rate</p>
+              <h3 className="text-2xl font-bold text-orange-600 mt-3">10%</h3>
+              <p className="text-xs text-slate-500 mt-2">
+                Fixed platform commission
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 bg-slate-50 border border-slate-200 rounded-xl p-5">
+            <p className="text-sm text-slate-500">Total Customers / Bookings</p>
+            <h3 className="text-2xl font-bold text-slate-800 mt-2">48</h3>
+            <p className="text-xs text-slate-500 mt-1">
+              Today's completed and ongoing bookings
+            </p>
+          </div>
+        </div>
+
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
           <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-6">
             <div>

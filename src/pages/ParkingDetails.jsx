@@ -1,13 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 
 const ParkingDetails = () => {
-  const slots = [
-    { id: "A01", status: "Available" },
-    { id: "A02", status: "Occupied" },
-    { id: "A03", status: "Available" },
+  const [vehicleType, setVehicleType] = useState("fourWheeler");
+  const [selectedSlot, setSelectedSlot] = useState("");
+
+  const vehicleCategories = [
+    { id: "twoWheeler", name: "Two Wheeler", icon: "🏍️" },
+    { id: "fourWheeler", name: "Four Wheeler", icon: "🚗" },
+    { id: "bus49Seater", name: "49 Seater", icon: "🚌" },
+    { id: "traveller", name: "Traveller", icon: "🚐" },
+    { id: "goodsVehicle", name: "Goods Vehicle", icon: "🚚" },
   ];
+
+  const parkingSlots = {
+    twoWheeler: [
+      { id: "TW01", status: "Available" },
+      { id: "TW02", status: "Occupied" },
+      { id: "TW03", status: "Available" },
+      { id: "TW04", status: "Available" },
+    ],
+    fourWheeler: [
+      { id: "FW01", status: "Available" },
+      { id: "FW02", status: "Occupied" },
+      { id: "FW03", status: "Available" },
+      { id: "FW04", status: "Available" },
+    ],
+    bus49Seater: [
+      { id: "BUS01", status: "Available" },
+      { id: "BUS02", status: "Occupied" },
+      { id: "BUS03", status: "Available" },
+    ],
+    traveller: [
+      { id: "TR01", status: "Available" },
+      { id: "TR02", status: "Occupied" },
+      { id: "TR03", status: "Available" },
+    ],
+    goodsVehicle: [
+      { id: "GV01", status: "Available" },
+      { id: "GV02", status: "Occupied" },
+      { id: "GV03", status: "Available" },
+    ],
+  };
 
   const facilities = [
     "CCTV Security",
@@ -17,6 +52,12 @@ const ParkingDetails = () => {
     "Car Wash",
     "Easy Access",
   ];
+
+  const slots = parkingSlots[vehicleType];
+
+  const isHeavyVehicle = ["bus49Seater", "traveller", "goodsVehicle"].includes(
+    vehicleType,
+  );
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -160,11 +201,9 @@ const ParkingDetails = () => {
                     }`}
                   >
                     <div className="text-2xl mb-2">🚗</div>
-
                     <p className="font-bold text-slate-800 text-sm">
                       {slot.id}
                     </p>
-
                     <p
                       className={`text-xs mt-2 ${
                         slot.status === "Available"
@@ -193,7 +232,6 @@ const ParkingDetails = () => {
                     <span className="w-9 h-9 flex-shrink-0 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
                       ✓
                     </span>
-
                     <span>{item}</span>
                   </div>
                 ))}
@@ -214,7 +252,6 @@ const ParkingDetails = () => {
                   <h3 className="font-semibold text-slate-800">
                     City Center Parking
                   </h3>
-
                   <p className="text-sm text-slate-500 mt-1">
                     MG Road, Thiruvananthapuram, Kerala, India
                   </p>
@@ -238,13 +275,11 @@ const ParkingDetails = () => {
                       <h3 className="font-semibold text-slate-800">
                         Arun Kumar
                       </h3>
-
                       <p className="text-xs text-slate-400 mt-1">2 days ago</p>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <span className="text-amber-500">★★★★★</span>
-
                       <span className="text-sm font-medium text-slate-600">
                         5.0
                       </span>
@@ -274,30 +309,74 @@ const ParkingDetails = () => {
               <div className="space-y-5">
                 <div>
                   <label className="text-sm font-medium text-slate-700">
-                    Vehicle Type
+                    Vehicle Category
                   </label>
 
                   <div className="grid grid-cols-2 gap-3 mt-3">
-                    <div className="border-2 border-emerald-500 bg-emerald-50 rounded-xl p-4 text-center">
-                      <p className="text-2xl">🚗</p>
-                      <p className="text-sm font-semibold mt-2">Car</p>
-                    </div>
-
-                    <div className="border border-slate-200 rounded-xl p-4 text-center">
-                      <p className="text-2xl">🏍️</p>
-                      <p className="text-sm font-semibold mt-2">Bike</p>
-                    </div>
+                    {vehicleCategories.map((vehicle) => (
+                      <button
+                        type="button"
+                        key={vehicle.id}
+                        onClick={() => {
+                          setVehicleType(vehicle.id);
+                          setSelectedSlot("");
+                        }}
+                        className={`border-2 rounded-xl p-3 text-center transition ${
+                          vehicleType === vehicle.id
+                            ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                            : "border-slate-200 bg-white text-slate-700 hover:border-emerald-300"
+                        }`}
+                      >
+                        <p className="text-2xl">{vehicle.icon}</p>
+                        <p className="text-xs font-semibold mt-2">
+                          {vehicle.name}
+                        </p>
+                      </button>
+                    ))}
                   </div>
                 </div>
+
+                <div>
+                  <label className="text-sm font-medium text-slate-700">
+                    Registration Number
+                  </label>
+
+                  <input
+                    type="text"
+                    placeholder="KL-01-AB-1234"
+                    className="w-full border border-slate-200 rounded-xl p-3 mt-2 text-sm outline-none focus:border-emerald-500"
+                  />
+                </div>
+
+                {isHeavyVehicle && (
+                  <div>
+                    <label className="text-sm font-medium text-slate-700">
+                      Vehicle Name
+                    </label>
+
+                    <input
+                      type="text"
+                      placeholder={
+                        vehicleType === "bus49Seater"
+                          ? "Eg: Valli Bus"
+                          : vehicleType === "traveller"
+                            ? "Eg: My Traveller"
+                            : "Eg: My Goods Vehicle"
+                      }
+                      className="w-full border border-slate-200 rounded-xl p-3 mt-2 text-sm outline-none focus:border-emerald-500"
+                    />
+                  </div>
+                )}
 
                 <div>
                   <label className="text-sm font-medium text-slate-700">
                     Booking Date
                   </label>
 
-                  <div className="border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-400">
-                    Select date
-                  </div>
+                  <input
+                    type="date"
+                    className="w-full border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-600 outline-none focus:border-emerald-500"
+                  />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -306,9 +385,11 @@ const ParkingDetails = () => {
                       Entry Time
                     </label>
 
-                    <div className="border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-500">
-                      10:00 AM
-                    </div>
+                    <input
+                      type="time"
+                      defaultValue="10:00"
+                      className="w-full border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-600 outline-none focus:border-emerald-500"
+                    />
                   </div>
 
                   <div>
@@ -316,9 +397,11 @@ const ParkingDetails = () => {
                       Exit Time
                     </label>
 
-                    <div className="border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-500">
-                      12:00 PM
-                    </div>
+                    <input
+                      type="time"
+                      defaultValue="12:00"
+                      className="w-full border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-600 outline-none focus:border-emerald-500"
+                    />
                   </div>
                 </div>
 
@@ -327,9 +410,31 @@ const ParkingDetails = () => {
                     Selected Slot
                   </label>
 
-                  <div className="border border-slate-200 rounded-xl p-3 mt-2 text-sm text-slate-400">
-                    Choose a parking slot
+                  <div className="grid grid-cols-3 gap-2 mt-3">
+                    {slots.map((slot) => (
+                      <button
+                        type="button"
+                        key={slot.id}
+                        disabled={slot.status !== "Available"}
+                        onClick={() => setSelectedSlot(slot.id)}
+                        className={`border rounded-lg p-3 text-center text-xs font-semibold ${
+                          selectedSlot === slot.id
+                            ? "bg-emerald-600 text-white border-emerald-600"
+                            : slot.status === "Available"
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              : "bg-red-50 text-red-400 border-red-200 cursor-not-allowed"
+                        }`}
+                      >
+                        {slot.id}
+                      </button>
+                    ))}
                   </div>
+
+                  <p className="text-xs text-slate-500 mt-2">
+                    {selectedSlot
+                      ? `Selected Slot: ${selectedSlot}`
+                      : "Choose a parking slot"}
+                  </p>
                 </div>
 
                 <div className="border-t border-slate-200 pt-5 space-y-4">
@@ -349,9 +454,12 @@ const ParkingDetails = () => {
                   </div>
                 </div>
 
-                <div className="w-full bg-emerald-600 text-white text-center font-semibold py-3.5 rounded-xl">
+                <button
+                  type="button"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center font-semibold py-3.5 rounded-xl transition"
+                >
                   Book Parking Now
-                </div>
+                </button>
 
                 <p className="text-xs text-center text-slate-400">
                   Secure booking · Easy cancellation
